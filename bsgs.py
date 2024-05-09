@@ -1,5 +1,4 @@
 def bsgs(g,h,p):
-    # your code here
     n = int(p**0.5) + 1
     baby = {}
     gi = 1
@@ -12,12 +11,8 @@ def bsgs(g,h,p):
     hj = h
     for j in range(n):
         if hj in baby:
-            # x = baby[hj] + j * n
-            # print('modpow: ' + str(modpow(g, x, p)))
             return baby[hj] + j * n
         hj = (hj * giantstep) % p
-
-    # return x
 
 def modpow(a, n, m):
     prod = 1

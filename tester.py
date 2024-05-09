@@ -1,18 +1,26 @@
 from bsgs import bsgs
-from index_calculus import main_func
+from index_calculus import solve
 import time
 
-PARAM_P = 18443
+DL_P = 941
 B = 5
-g = 37
-h = 211
+g = 627
 
 if __name__ == '__main__':
-	start_time = time.time()
-	main_func()
-	print("index calc: --- %s seconds ---" % (time.time() - start_time))
+	for h in range(1, 21):
+		start_time = time.time()
+		res1 = solve(g, h, DL_P)
+		print("index calc: --- %s seconds ---" % (time.time() - start_time))
 
-	start_time = time.time()
-	bsgs(g, h, PARAM_P)
-	print("bsgs      : --- %s seconds ---" % (time.time() - start_time))
+		start_time = time.time()
+		res2 = bsgs(g, h, DL_P)
+		print("bsgs      : --- %s seconds ---" % (time.time() - start_time))
+
+		if pow(g, res1, DL_P) != h:
+			print("index calc failed")
+		if pow(g, res2, DL_P) != h:
+			print("bsgs failed")
+		print(res1)
+		print()
+		print()
 
