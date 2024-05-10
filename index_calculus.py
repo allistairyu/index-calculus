@@ -90,7 +90,7 @@ def compute_small_dlogs(g, p):
 def solve(g, h, p):
     print(f'Solving {g}^x = {h} mod {p}...')
     small_dlogs = compute_small_dlogs(g, p)
-    k = 0
+    k = 1
     factors = []
     while True:
         hgk = (h * pow(g, -k, p)) % p
