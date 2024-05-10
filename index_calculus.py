@@ -4,12 +4,11 @@ from sage.all import *
 from collections import defaultdict 
 
 B = 5
-factor_base = [2, 3, 5]
+factor_base = [2, 3, 5] # optionally use gen_factor_base
 
 # get factor base for B
 # https://stackoverflow.com/a/3035188
-# TODO: implement sieve of eratosthenes
-def primes1(n):
+def gen_factor_base(n):
     """ Returns  a list of primes <= n """
     n += 1
     sieve = [True] * (n//2)
@@ -19,7 +18,7 @@ def primes1(n):
     return [2] + [2*i+1 for i in range(1,n//2) if sieve[i]]
 
 def check_B_smooth(n, B):
-    factors = list(primefac(n)) # TODO: implement primefac
+    factors = list(primefac(n))
     for f in factors:
         if f > B:
             return False, factors
@@ -91,7 +90,7 @@ def compute_small_dlogs(g, p):
 def solve(g, h, p):
     print(f'Solving {g}^x = {h} mod {p}...')
     small_dlogs = compute_small_dlogs(g, p)
-    k = 2
+    k = 0
     factors = []
     while True:
         hgk = (h * pow(g, -k, p)) % p
